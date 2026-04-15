@@ -10,9 +10,9 @@ venv/
 env/
 ENV/
 
-# Local configuration
+# Configuracion local
 .env
 
-# Editor files
+# Archivos de IDEs
 .vscode/
 .idea/

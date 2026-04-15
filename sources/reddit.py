@@ -1,6 +1,5 @@
-import praw
-
 from config import (
+    ENABLE_REDDIT,
     REDDIT_CLIENT_ID,
     REDDIT_CLIENT_SECRET,
     REDDIT_POST_LIMIT,
@@ -9,8 +8,17 @@ from config import (
 )
 
 def get_reddit_posts():
+    if not ENABLE_REDDIT:
+        return []
+
     if not REDDIT_CLIENT_ID or not REDDIT_CLIENT_SECRET:
         print("Aviso: Reddit no esta configurado en .env. Se omite esta fuente.")
+        return []
+
+    try:
+        import praw
+    except ImportError:
+        print("Aviso: praw no esta instalado. Se omite la fuente de Reddit.")
         return []
 
     reddit = praw.Reddit(

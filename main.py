@@ -2,6 +2,7 @@ from sources.trends import get_trending_searches
 from sources.reddit import get_reddit_posts
 from utils.filter import filter_topics
 
+
 def main():
     print("🔍 Buscando tendencias...\n")
 
@@ -11,6 +12,16 @@ def main():
     all_topics = trends + reddit
 
     filtered = filter_topics(all_topics)
+
+    if not filtered:
+        if all_topics:
+            print("No hubo coincidencias con el filtro tech. Mostrando tendencias generales:\n")
+            for i, topic in enumerate(all_topics[:10], 1):
+                print(f"{i}. {topic}")
+            return
+
+        print("No se encontraron temas para mostrar con la configuracion actual.")
+        return
 
     print("🔥 TOP IDEAS PARA VIDEO:\n")
 

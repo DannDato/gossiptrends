@@ -23,6 +23,7 @@ El proyecto lee variables desde el archivo `.env` en la raiz.
 Variables disponibles:
 
 ```env
+ENABLE_REDDIT=false
 REDDIT_CLIENT_ID=
 REDDIT_CLIENT_SECRET=
 REDDIT_USER_AGENT=gossip-topic-finder
@@ -30,14 +31,17 @@ REDDIT_SUBREDDITS=technology,programming,gadgets,artificial
 REDDIT_POST_LIMIT=10
 TRENDS_LANGUAGE=es-MX
 TRENDS_TIMEZONE=360
-TRENDS_REGION=mexico
+TRENDS_REGIONS=mexico,colombia,spain,argentina
 ```
 
 Notas:
 
-- Si `REDDIT_CLIENT_ID` o `REDDIT_CLIENT_SECRET` estan vacios, la fuente de Reddit se omite.
+- Si `ENABLE_REDDIT=false`, el proyecto no intenta usar Reddit.
+- Si `ENABLE_REDDIT=true` pero `REDDIT_CLIENT_ID` o `REDDIT_CLIENT_SECRET` estan vacios, la fuente de Reddit se omite.
 - `REDDIT_SUBREDDITS` acepta una lista separada por comas.
 - `TRENDS_TIMEZONE` y `REDDIT_POST_LIMIT` deben ser enteros.
+- `TRENDS_REGIONS` acepta una lista separada por comas y se consulta en orden.
+- Para `TRENDS_REGIONS`, usa nombres esperados por `pytrends` como `mexico`, `colombia`, `spain`, `argentina`.
 
 ## Uso
 
